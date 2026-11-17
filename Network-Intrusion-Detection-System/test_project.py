@@ -78,14 +78,13 @@ class TestNIDSProject(unittest.TestCase):
 
     def test_06_report_generator_pdf_creation(self):
         """Verify generate_report.py generates valid PDF without runtime errors."""
-        test_pdf = os.path.join(os.path.dirname(__file__), "weekly_reports", "test_report.pdf")
-        pdf_out = generate_report.generate_pdf(
-            interval="final",
-            output_filename=test_pdf,
-            retrospective=False
-        )
-        self.assertTrue(os.path.isfile(pdf_out))
-        self.assertGreater(os.path.getsize(pdf_out), 1000)
+        generate_report.generate_pdf("weekly")
+        repo_name, _ = generate_report.get_repo_info()
+        import datetime
+        date_stamp = datetime.date.today().strftime("%Y-%m-%d")
+        expected_pdf = f"{repo_name}_Weekly_Progress_Report_Form-3_{date_stamp}.pdf"
+        self.assertTrue(os.path.isfile(expected_pdf), f"Expected PDF {expected_pdf} to exist")
+        self.assertGreater(os.path.getsize(expected_pdf), 1000)
 
     def test_07_no_hardcoded_secrets(self):
         """Verify repository files contain no hardcoded API keys or private tokens."""
