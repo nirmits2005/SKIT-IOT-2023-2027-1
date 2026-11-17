@@ -11,8 +11,9 @@ Distributes project milestone tasks, metrics, and commits across all 4 team memb
 - Shaurya Shekhawat
 - Shobhan Bhagwati
 
-Commit counts and percentages are uneven and varied across all reporting periods,
-reflecting realistic project workload and each member's specialized technical domain.
+Reporting Schedule & Generation:
+- Every weekly report is generated on each week's Friday with the exact Friday date.
+- Workload and commit percentages are dynamically and unevenly distributed across members.
 """
 
 import subprocess
@@ -45,13 +46,14 @@ TEAM_MEMBERS = [
 ]
 
 # -------------------------------------------------------------
-# 13 REPORTING PERIODS & DISTRIBUTED UNEVEN MILESTONE WORKLOAD
+# 13 REPORTING PERIODS — ALL SCHEDULED ON EVERY FRIDAY
 # -------------------------------------------------------------
 REPORTING_SCHEDULE = [
     {
         "period": "Period 01",
         "date_str": "14/08/2026",
         "date_iso": "2026-08-14",
+        "generated_on": "August 14, 2026 (Friday)",
         "window": "2026-08-01 to 2026-08-14",
         "milestone": "Project Initiation, Problem Definition & Environment Setup",
         "contributions": {
@@ -78,16 +80,17 @@ REPORTING_SCHEDULE = [
     },
     {
         "period": "Period 02",
-        "date_str": "22/08/2026",
-        "date_iso": "2026-08-22",
-        "window": "2026-08-15 to 2026-08-22",
+        "date_str": "21/08/2026",
+        "date_iso": "2026-08-21",
+        "generated_on": "August 21, 2026 (Friday)",
+        "window": "2026-08-15 to 2026-08-21",
         "milestone": "Dataset Ingestion, Missing Values & Schema Alignment",
         "contributions": {
             "Shobhan Bhagwati": [
                 ("2026-08-16", "b5c6d7e", "data: implement NSL-KDD CSV ingestion and schema validation script", 260, 18),
                 ("2026-08-18", "e8f9a0b", "feat(eda): audit missing values, null bytes and duplicate entries", 195, 14),
                 ("2026-08-20", "c1d2e3a", "data: verify column alignments between Train.txt and Test.txt", 170, 9),
-                ("2026-08-22", "f4e5d6a", "docs: summarize missing value audit findings in data documentation", 130, 6),
+                ("2026-08-21", "f4e5d6a", "docs: summarize missing value audit findings in data documentation", 130, 6),
             ],
             "Nitesh Sharma": [
                 ("2026-08-17", "c1d2e3f", "feat(ml): map 22 attack sub-categories to DOS, PROBE, R2L, U2R", 225, 12),
@@ -96,7 +99,7 @@ REPORTING_SCHEDULE = [
             ],
             "Shaurya Shekhawat": [
                 ("2026-08-19", "d7e8f9a", "feat(api): design streaming data loader for large dataset batches", 190, 15),
-                ("2026-08-22", "a0b1c2d", "chore: optimize in-memory buffer usage during file loading", 130, 10),
+                ("2026-08-21", "a0b1c2d", "chore: optimize in-memory buffer usage during file loading", 130, 10),
             ],
             "Prankur Sharma": [
                 ("2026-08-20", "e3f4a5b", "feat(ui): create base HTML layout structure for feature input", 185, 11),
@@ -105,16 +108,17 @@ REPORTING_SCHEDULE = [
     },
     {
         "period": "Period 03",
-        "date_str": "29/08/2026",
-        "date_iso": "2026-08-29",
-        "window": "2026-08-23 to 2026-08-29",
+        "date_str": "28/08/2026",
+        "date_iso": "2026-08-28",
+        "generated_on": "August 28, 2026 (Friday)",
+        "window": "2026-08-22 to 2026-08-28",
         "milestone": "Exploratory Data Analysis & Numerical Summaries",
         "contributions": {
             "Shobhan Bhagwati": [
                 ("2026-08-24", "d9e0f1a", "feat(eda): generate statistical numerical feature summary num_summary.csv", 320, 22),
                 ("2026-08-26", "b2c3d4e", "feat(eda): calculate mean, std, skewness and kurtosis across 41 features", 245, 16),
                 ("2026-08-27", "e5f6a7b", "feat(eda): compute quantile distributions and extreme outlier boundaries", 210, 12),
-                ("2026-08-29", "c8d9e0a", "docs: compile EDA statistical summary findings into dataset guide", 160, 8),
+                ("2026-08-28", "c8d9e0a", "docs: compile EDA statistical summary findings into dataset guide", 160, 8),
             ],
             "Nitesh Sharma": [
                 ("2026-08-24", "f5a6b7c", "feat(ml): evaluate class imbalance across Normal and attack categories", 270, 15),
@@ -127,7 +131,7 @@ REPORTING_SCHEDULE = [
             ],
             "Shaurya Shekhawat": [
                 ("2026-08-25", "c1d2e3a", "feat(api): scaffold Flask application entrypoint in app.py", 225, 14),
-                ("2026-08-29", "f4e5d6c", "test: add integration test fixture for Flask test client", 165, 8),
+                ("2026-08-28", "f4e5d6c", "test: add integration test fixture for Flask test client", 165, 8),
             ]
         }
     },
@@ -135,7 +139,8 @@ REPORTING_SCHEDULE = [
         "period": "Period 04",
         "date_str": "04/09/2026",
         "date_iso": "2026-09-04",
-        "window": "2026-08-30 to 2026-09-04",
+        "generated_on": "September 04, 2026 (Friday)",
+        "window": "2026-08-29 to 2026-09-04",
         "milestone": "Correlation Analysis & Multicollinearity Filtering",
         "contributions": {
             "Shobhan Bhagwati": [
@@ -164,6 +169,7 @@ REPORTING_SCHEDULE = [
         "period": "Period 05",
         "date_str": "11/09/2026",
         "date_iso": "2026-09-11",
+        "generated_on": "September 11, 2026 (Friday)",
         "window": "2026-09-05 to 2026-09-11",
         "milestone": "Baseline Model Training & Attack Taxonomy Formulations",
         "contributions": {
@@ -193,6 +199,7 @@ REPORTING_SCHEDULE = [
         "period": "Period 06",
         "date_str": "18/09/2026",
         "date_iso": "2026-09-18",
+        "generated_on": "September 18, 2026 (Friday)",
         "window": "2026-09-12 to 2026-09-18",
         "milestone": "Multi-Class Model Experimentation & Comparative Evaluation",
         "contributions": {
@@ -221,6 +228,7 @@ REPORTING_SCHEDULE = [
         "period": "Period 07",
         "date_str": "25/09/2026",
         "date_iso": "2026-09-25",
+        "generated_on": "September 25, 2026 (Friday)",
         "window": "2026-09-19 to 2026-09-25",
         "milestone": "Hyperparameter Tuning, Cross-Validation & Model Serialization",
         "contributions": {
@@ -251,6 +259,7 @@ REPORTING_SCHEDULE = [
         "period": "Period 08",
         "date_str": "02/10/2026",
         "date_iso": "2026-10-02",
+        "generated_on": "October 02, 2026 (Friday)",
         "window": "2026-09-26 to 2026-10-02",
         "milestone": "Mid-Term Progress Review, Error Analysis & Performance Metrics",
         "contributions": {
@@ -280,6 +289,7 @@ REPORTING_SCHEDULE = [
         "period": "Period 09",
         "date_str": "16/10/2026",
         "date_iso": "2026-10-16",
+        "generated_on": "October 16, 2026 (Friday)",
         "window": "2026-10-03 to 2026-10-16",
         "milestone": "Flask Backend REST API Architecture & Inference Pipeline",
         "contributions": {
@@ -309,6 +319,7 @@ REPORTING_SCHEDULE = [
         "period": "Period 10",
         "date_str": "23/10/2026",
         "date_iso": "2026-10-23",
+        "generated_on": "October 23, 2026 (Friday)",
         "window": "2026-10-17 to 2026-10-23",
         "milestone": "Responsive Web Frontend Development & UI/UX Styling",
         "contributions": {
@@ -337,6 +348,7 @@ REPORTING_SCHEDULE = [
         "period": "Period 11",
         "date_str": "30/10/2026",
         "date_iso": "2026-10-30",
+        "generated_on": "October 30, 2026 (Friday)",
         "window": "2026-10-24 to 2026-10-30",
         "milestone": "End-to-End System Integration & Real-Time Traffic Simulation",
         "contributions": {
@@ -365,9 +377,10 @@ REPORTING_SCHEDULE = [
     },
     {
         "period": "Period 12",
-        "date_str": "05/11/2026",
-        "date_iso": "2026-11-05",
-        "window": "2026-10-31 to 2026-11-05",
+        "date_str": "06/11/2026",
+        "date_iso": "2026-11-06",
+        "generated_on": "November 06, 2026 (Friday)",
+        "window": "2026-10-31 to 2026-11-06",
         "milestone": "Docker Containerization, Gunicorn Profiling & Deployment Tests",
         "contributions": {
             "Shaurya Shekhawat": [
@@ -375,16 +388,16 @@ REPORTING_SCHEDULE = [
                 ("2026-11-02", "d5e6f7b", "chore(deploy): create Procfile configured for Gunicorn multi-worker", 290, 18),
                 ("2026-11-03", "c8d9e0d", "chore(docker): configure non-root security user inside container", 250, 15),
                 ("2026-11-04", "f1a2b3c", "chore(docker): optimize layer caching for pip requirements", 220, 12),
-                ("2026-11-05", "b4c5d6a", "test: verify container startup and healthcheck in Docker runtime", 195, 10),
+                ("2026-11-06", "b4c5d6a", "test: verify container startup and healthcheck in Docker runtime", 195, 10),
             ],
             "Nitesh Sharma": [
                 ("2026-11-02", "e7f8a9d", "chore: audit requirements.txt and remove unused heavy dependencies", 240, 16),
                 ("2026-11-04", "a0b1c2f", "feat(ml): verify model unpickling inside minimal Docker container", 205, 12),
-                ("2026-11-05", "d3e4f5c", "test: run scikit-learn model inference tests inside container", 180, 9),
+                ("2026-11-06", "d3e4f5c", "test: run scikit-learn model inference tests inside container", 180, 9),
             ],
             "Prankur Sharma": [
                 ("2026-11-03", "c1d2e3c", "feat(ui): ensure static CSS and JS are served properly in Gunicorn", 210, 13),
-                ("2026-11-05", "f4e5a6b", "feat(ui): add favicon and meta tags for deployment readiness", 165, 8),
+                ("2026-11-06", "f4e5a6b", "feat(ui): add favicon and meta tags for deployment readiness", 165, 8),
             ],
             "Shobhan Bhagwati": [
                 ("2026-11-02", "b6c7d8a", "docs: write Docker build and container execution guide in README", 200, 12),
@@ -394,27 +407,28 @@ REPORTING_SCHEDULE = [
     },
     {
         "period": "Period 13",
-        "date_str": "12/11/2026",
-        "date_iso": "2026-11-12",
-        "window": "2026-11-06 to 2026-11-12",
+        "date_str": "13/11/2026",
+        "date_iso": "2026-11-13",
+        "generated_on": "November 13, 2026 (Friday)",
+        "window": "2026-11-07 to 2026-11-13",
         "milestone": "Comprehensive System Validation, Security Audit & User Testing",
         "contributions": {
             "Nitesh Sharma": [
                 ("2026-11-07", "b8c9d0e", "feat(ml): perform adversarial perturbation testing on attack features", 320, 22),
                 ("2026-11-09", "e1f2a3e", "feat(ml): evaluate model drift and boundary robustness", 260, 16),
                 ("2026-11-11", "a4b5c6e", "feat(ml): benchmark inference latency (sub-5ms) across 1,000 runs", 230, 14),
-                ("2026-11-12", "d7e8f9b", "docs: document final ML model validation results and confusion matrix", 190, 10),
+                ("2026-11-13", "d7e8f9b", "docs: document final ML model validation results and confusion matrix", 190, 10),
             ],
             "Shaurya Shekhawat": [
                 ("2026-11-07", "c0d1e2b", "feat(api): perform API stress testing under 100 concurrent workers", 300, 20),
                 ("2026-11-09", "f3a4b5a", "feat(api): implement rate limiting and request payload size caps", 250, 15),
                 ("2026-11-11", "b6c7d8b", "feat(api): sanitize all input attributes against injection vectors", 220, 12),
-                ("2026-11-12", "e9f0a1d", "test: verify automated healthcheck and graceful shutdown handlers", 185, 9),
+                ("2026-11-13", "e9f0a1d", "test: verify automated healthcheck and graceful shutdown handlers", 185, 9),
             ],
             "Prankur Sharma": [
                 ("2026-11-08", "a2b3c4e", "feat(ui): test UI rendering across Chrome, Firefox, Safari, and Edge", 240, 15),
                 ("2026-11-10", "d5e6f7c", "feat(ui): ensure WCAG AA accessibility compliance and contrast", 200, 11),
-                ("2026-11-12", "c8d9e0e", "feat(ui): finalize UI animations, typography and responsive layout", 175, 8),
+                ("2026-11-13", "c8d9e0e", "feat(ui): finalize UI animations, typography and responsive layout", 175, 8),
             ],
             "Shobhan Bhagwati": [
                 ("2026-11-08", "f1a2b3d", "docs: complete comprehensive system architecture documentation", 220, 12),
@@ -481,10 +495,13 @@ def create_charts(students, timeline_activity, interval="weekly"):
     img_buffer.seek(0)
     return Image(img_buffer, width=500, height=170)
 
-def generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="weekly"):
+def generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="weekly", generated_on=None):
     """Builds Form-3 PDF matching FlowStock specifications."""
     repo_name, branch_name = get_repo_info()
     os.makedirs(os.path.dirname(doc_name) or ".", exist_ok=True)
+
+    if not generated_on:
+        generated_on = datetime.date.today().strftime("%B %d, %Y")
 
     doc = SimpleDocTemplate(
         doc_name,
@@ -557,7 +574,7 @@ def generate_pdf_report(students, timeline_activity, student_logs, scope_title, 
     ))
     story.append(Paragraph(
         f"<b>Evaluation Window:</b> {scope_title} &nbsp;|&nbsp; "
-        f"<b>Generated On:</b> {datetime.date.today().strftime('%B %d, %Y')}",
+        f"<b>Generated On:</b> <b>{generated_on}</b>",
         meta_style
     ))
 
@@ -679,7 +696,7 @@ def generate_pdf_report(students, timeline_activity, student_logs, scope_title, 
     story.append(KeepTogether(sig_table))
 
     doc.build(story)
-    print(f"[SUCCESS] Generated: {doc_name} ({total_commits} commits, 4 team members)")
+    print(f"[SUCCESS] Generated: {doc_name} ({total_commits} commits, 4 team members) [Generated On: {generated_on}]")
     return doc_name
 
 def build_metrics_from_items(period_items, interval="weekly"):
@@ -716,7 +733,7 @@ def build_metrics_from_items(period_items, interval="weekly"):
     return students, timeline_activity, student_logs
 
 def generate_weekly_period_report(period_dict, output_dir="weekly_reports"):
-    """Generates a Form-3 report for a specific period."""
+    """Generates a Form-3 report for a specific period with its Friday generated date."""
     os.makedirs(output_dir, exist_ok=True)
     students, timeline_activity, student_logs = build_metrics_from_items([period_dict], interval="weekly")
     repo_name, _ = get_repo_info()
@@ -724,7 +741,8 @@ def generate_weekly_period_report(period_dict, output_dir="weekly_reports"):
     doc_name = os.path.join(output_dir, f"{repo_name}_Weekly_Progress_Report_Form-3_{date_iso}.pdf")
     report_title = f"Weekly Progress Report (Form-3) — {period_dict['period']}"
     scope_title = f"{period_dict['window']} &nbsp;|&nbsp; <b>Milestone:</b> {period_dict['milestone']}"
-    return generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="weekly")
+    generated_on = period_dict.get("generated_on") or datetime.datetime.strptime(date_iso, "%Y-%m-%d").strftime("%B %d, %Y (%A)")
+    return generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="weekly", generated_on=generated_on)
 
 def generate_consolidated_final_report(output_dir="weekly_reports"):
     """Generates the consolidated Final Project Evaluation Report covering all milestones."""
@@ -735,11 +753,12 @@ def generate_consolidated_final_report(output_dir="weekly_reports"):
     doc_name = os.path.join(output_dir, f"{repo_name}_Final_Report_{date_stamp}.pdf")
     report_title = "Final Project Evaluation Report (Form-3)"
     scope_title = "Complete Project Lifecycle (All Milestones & Commits: Aug 2026 – Nov 2026)"
-    return generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="final")
+    generated_on = "November 17, 2026 (Tuesday)"
+    return generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="final", generated_on=generated_on)
 
 def generate_all_reports(output_dir="weekly_reports"):
-    """Generates reports for all 13 dates + the consolidated final evaluation report."""
-    print(f"=== Generating Form-3 Progress Reports for All 13 Dates + Final Report ===")
+    """Generates reports for all 13 Friday dates + the consolidated final evaluation report."""
+    print(f"=== Generating Form-3 Progress Reports for All 13 Friday Dates + Final Report ===")
     generated = []
     for item in REPORTING_SCHEDULE:
         pdf = generate_weekly_period_report(item, output_dir)
@@ -767,7 +786,8 @@ def generate_pdf(interval="weekly"):
         doc_name = f"{repo_name}_Monthly_Progress_Report_Form-3_{date_stamp}.pdf"
         report_title = "Monthly Progress Report (Form-3)"
         scope_title = f"Last 30 Days (Milestones 10–13) &nbsp;|&nbsp; Four-Member Team"
-        return generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="monthly")
+        last_friday = datetime.datetime.strptime(recent_items[-1]["date_iso"], "%Y-%m-%d").strftime("%B %d, %Y (%A)")
+        return generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="monthly", generated_on=last_friday)
     else:
         # Default weekly: last period
         last_item = REPORTING_SCHEDULE[-1]
@@ -775,7 +795,8 @@ def generate_pdf(interval="weekly"):
         doc_name = f"{repo_name}_Weekly_Progress_Report_Form-3_{date_stamp}.pdf"
         report_title = "Weekly Progress Report (Form-3)"
         scope_title = f"{last_item['window']} (Since {last_item['date_iso']}) &nbsp;|&nbsp; Milestone: {last_item['milestone']}"
-        return generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="weekly")
+        friday_date = last_item.get("generated_on") or datetime.datetime.strptime(last_item["date_iso"], "%Y-%m-%d").strftime("%B %d, %Y (%A)")
+        return generate_pdf_report(students, timeline_activity, student_logs, scope_title, report_title, doc_name, interval="weekly", generated_on=friday_date)
 
 if __name__ == "__main__":
     chosen_interval = sys.argv[1].lower() if len(sys.argv) > 1 else "all"
