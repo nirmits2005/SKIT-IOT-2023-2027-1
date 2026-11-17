@@ -1,0 +1,63 @@
+name: Weekly Progress Report Auto-Commit
+
+on:
+  schedule:
+    # Every Thursday at 11:59 PM IST
+    # Corresponds to 18:29 UTC
+    - cron: '29 18 * * 4'
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository with Full Git History
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install PDF Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install reportlab matplotlib
+
+      - name: Generate Weekly PDF Report
+        working-directory: Network-Intrusion-Detection-System
+        run: |
+          python generate_report.py weekly
+
+      - name: Archive Generated PDF
+        working-directory: .
+        shell: bash
+        run: |
+          mkdir -p Network-Intrusion-Detection-System/weekly_reports
+
+          shopt -s nullglob
+          reports=(Network-Intrusion-Detection-System/*_Weekly_Progress_Report_Form-3_*.pdf)
+
+          if [ ${#reports[@]} -gt 0 ]; then
+            mv "${reports[@]}" Network-Intrusion-Detection-System/weekly_reports/
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add Network-Intrusion-Detection-System/weekly_reports/
+
+          if git diff --staged --quiet; then
+            echo "No new reports to commit."
+          else
+            git commit -m "docs(nids): archive weekly Form-3 progress report [skip ci]"
+            git push
+          fi
